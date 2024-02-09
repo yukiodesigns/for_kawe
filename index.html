@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Letter</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #8E2DE2, #4A00E0);
+    overflow: hidden;
+    color: white;
+    font-family: Arial, sans-serif;
+    background-size: 200% 200%;
+    animation: gradientAnimation 10s ease infinite;
+  }
+  .letter-container {
+    position: relative;
+    max-width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+ .heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 2;
+    transition: transform 0.5s ease;
+  }
+</style>
+</head>
+<body>
+
+<div class="heart" onclick="openLetter()">❤️</div>
+
+<div id="letter" class="letter-container">
+  <p id="content">
+    Dear Koi (Its Japanesse for love),
+
+    
+  </p>
+</div>
+
+<audio id="music" src="./Backstreet Boys - I'll Never Break Your Heart (320 kbps).mp3" loop></audio>
+
+<script>
+   const content = "I hope this letter finds you well, though I must admit, finding the right words to express what's been on my mind has proven to be quite the challenge. Yet, here I am, penning down my thoughts in the hope that you'll understand the depth of my feelings for you.Koi, from the moment I met you, something shifted within me. Your presence has this uncanny ability to light up even the darkest corners of my soul, and for that, I am endlessly grateful. But I must confess, I've been struggling with something—a battle within myself that I've been reluctant to confront.You see, I've been in denial. Denial of the fact that every time I look into your eyes, my heart skips a beat. Denial of the fact that your smile has become the highlight of my day. Denial of the fact that I am head over heels in love with you.It's silly, I know. These fears and doubts that I've allowed to fester in my mind—they're nothing but foolish barriers preventing me from fully embracing what my heart has been trying to tell me all along. And it's not fair to you, Koi. It's not fair that I've let my own insecurities stand in the way of what could be something truly beautiful.I want you to know that despite my hesitations, there's nothing I want more than to commit to you, to stand by your side through thick and thin, and to simply be with you. But I need your help, Koi. I need your patience, your understanding, and your unwavering support, even when I'm being the most difficult person to deal with.You are my rock, Koi. In a world filled with uncertainty, you are the one constant that I can always rely on. Your love has brought warmth to my life in ways I never thought possible, and I am determined to overcome my fears and insecurities for the sake of our relationship.So here I am, laying my heart bare before you, hoping that you'll see past my flaws and shortcomings and understand the depth of my love for you. Because, Koi, you mean everything to me, and I can't imagine a future without you by my side.";
+   const letterContent = document.getElementById('content');
+   let index = 0;
+
+  function openLetter() {
+    const letter = document.getElementById('letter');
+    const music = document.getElementById('music');
+    letter.style.opacity = '1';
+    letter.style.transform = 'translateY(0)';
+    playMusic(music);
+    showContent();
+    removeHeart();
+  }
+
+  function showContent() {
+    const interval = setInterval(function() {
+      letterContent.textContent += content[index];
+      index++;
+      if (index === content.length) clearInterval(interval);
+    }, 100);
+  }
+
+  function playMusic(audio) {
+    audio.play();
+  }
+  
+  function removeHeart() {
+    const heart = document.querySelector('.heart');
+    heart.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
